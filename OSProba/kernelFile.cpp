@@ -1,7 +1,10 @@
 #include "kernelFile.h"
 
-KernelFile::KernelFile()
+
+KernelFile::KernelFile(GlobalFile * gFile, char mode) 
 {
+	global_file = gFile; 
+	this->mode = mode;
 }
 
 KernelFile::~KernelFile()

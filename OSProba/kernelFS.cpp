@@ -2,10 +2,12 @@
 
 KernelFS::KernelFS()
 {
+	mutex_GFTable = CreateMutex(NULL, FALSE, NULL);
 }
 
 KernelFS::~KernelFS()
 {
+	CloseHandle(mutex_GFTable);
 }
 
 char KernelFS::mount(Partition * partition)

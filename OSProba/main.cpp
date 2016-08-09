@@ -11,10 +11,6 @@
 
 using namespace std;
 
-struct BitVector {
-	char bits[1024];
-};
-
 struct ProbaClaster {
 	char entries[2048];
 };
@@ -23,7 +19,7 @@ void proba1();
 void proba2();
 void proba3();
 int main() {
-	proba3();
+	proba1();
 	
 	system("PAUSE");
 	return 0;
@@ -32,12 +28,12 @@ int main() {
 void proba1() {
 	Partition* partition1 = new Partition("p1.ini");
 
-	for (int i = 0; i < 1050; i++) {
-		ProbaClaster* novi = new ProbaClaster();
-		int res = partition1->writeCluster(i, (const char*) novi);
-		cout << res;
-		delete novi;
-	}
+	//for (int i = 0; i < 1050; i++) {
+	//	ProbaClaster* novi = new ProbaClaster();
+	//	int res = partition1->writeCluster(i, (const char*) novi);
+	//	cout << res;
+	//	delete novi;
+	//}
 
 	cout << "Broj klastera je : " << partition1->getNumOfClusters();
 
@@ -58,5 +54,7 @@ void proba2() {
 }
 
 void proba3() {
-	cout << sizeof(double *);
+	char * ptr = "test";
+	cout << ptr[1] << "\n";
+	cout  << "\n" << (typeid(TRUE).name());
 }

@@ -30,6 +30,21 @@
     <ClInclude Include="kernelFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clusters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="partition_table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mounted_partition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="global_files_table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="global_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,6 +60,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="kernelFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="global_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mounted_partition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="partition_table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

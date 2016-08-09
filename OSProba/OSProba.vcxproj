@@ -151,18 +151,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="clusters.h" />
     <ClInclude Include="file.h" />
     <ClInclude Include="fs.h" />
+    <ClInclude Include="global_file.h" />
+    <ClInclude Include="global_files_table.h" />
     <ClInclude Include="kernelFile.h" />
     <ClInclude Include="kernelFS.h" />
+    <ClInclude Include="mounted_partition.h" />
     <ClInclude Include="part.h" />
+    <ClInclude Include="partition_table.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="file.cpp" />
     <ClCompile Include="fs.cpp" />
+    <ClCompile Include="global_file.cpp" />
     <ClCompile Include="kernelFile.cpp" />
     <ClCompile Include="kernelFS.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mounted_partition.cpp" />
+    <ClCompile Include="partition_table.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="part.lib" />

@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "part.h"
 #include "fs.h"
+#include <map>
+#include "global_file.h"
 
 class KernelFS {
 
@@ -21,4 +23,8 @@ public:
 									   //apsolutnom putanjom
 	File* open(char* fname, char mode);
 	char deleteFile(char* fname);
+
+	// global open files table 
+	map<string, GlobalFile*> global_files_table;
+	HANDLE mutex_GFTable;
 };
