@@ -1,11 +1,11 @@
 #include "partition_table.h"
 
-inline MPartitionTable::MPartitionTable()
+MPartitionTable::MPartitionTable()
 {
 	mutex_MPTable = CreateMutex(NULL, FALSE, NULL);
 }
 
-inline MPartitionTable::~MPartitionTable()
+MPartitionTable::~MPartitionTable()
 {
 	CloseHandle(mutex_MPTable);
 }
@@ -28,7 +28,7 @@ char MPartitionTable::mount(Partition* partition) { // returns 0 if there is no 
 	return res;
 }
 
-inline char MPartitionTable::unmount(char partition)
+char MPartitionTable::unmount(char partition)
 {
 	wait(mutex_MPTable);
 	if (partitions[partition - 'A'] == nullptr || unmounting_or_formating[partition - 'A'])
@@ -45,13 +45,16 @@ inline char MPartitionTable::unmount(char partition)
 	wait(mutex_MPTable); // delete MPartition entry in partitions table
 	partitions[partition - 'A'] = nullptr;
 	unmounting_or_formating[partition - 'A'] = false;
+
+	//save bit-vector
+	p->partition->writeCluster(0, (char*)&(p->bitVector));
 	delete p;
 	signal(mutex_MPTable);
 
 	return 1; // success
 }
 
-inline char MPartitionTable::format(char partition)
+char MPartitionTable::format(char partition)
 {
 	wait(mutex_MPTable);
 	if (partitions[partition - 'A'] == nullptr || unmounting_or_formating[partition - 'A'])
@@ -67,8 +70,13 @@ inline char MPartitionTable::format(char partition)
 
 	wait(mutex_MPTable); // format partition
 	unmounting_or_formating[partition - 'A'] = false;
-	p->bitVector = bitset<BIT_VECTOR_ENTRIES>();
+	p->bitVector = BitVector();
+	p->partition->writeCluster(0, (char*)&(p->bitVector));
+	//write index
+	ClusterPointer index[INDEX_ENTRIES] = { 0 };
+	p->partition->writeCluster(0, (char*)index);
+
 	signal(mutex_MPTable);
 
 	return 1; // success
-} // treba jos nulirati indeks korenog direktorijuma
+}

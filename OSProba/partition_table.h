@@ -15,7 +15,6 @@ public:
 	char mount(Partition* partition);
 	char unmount(char partition);
 	char format(char part);
-private :
 };
 
 

@@ -13,7 +13,7 @@ public:
 	CRITICAL_SECTION* cSection_MP;  // thread that owns critical section can enter it again without blocking
 	CONDITION_VARIABLE* cond_openFiles;
 
-	bitset<BIT_VECTOR_ENTRIES> bitVector;
+	BitVector bitVector;
 
 	// -------------------------------------------------
 	MPartition(Partition*, char);

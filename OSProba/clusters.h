@@ -19,7 +19,11 @@ using namespace std;
 
 typedef unsigned long ClusterPointer;
 
-struct rootEntriesCluster {
+struct RootEntriesCluster {
 	Entry entries[ROOT_ENTRIES_IN_CLASTER];
 	char reserved[8];
+};
+
+struct BitVector {
+	bitset<BIT_VECTOR_ENTRIES> bitVector;
 };

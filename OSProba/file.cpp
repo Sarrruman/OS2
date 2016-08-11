@@ -1,6 +1,9 @@
 #include "file.h"
 #include "kernelFile.h"
 
+File::File() {
+}
+
 File::~File()
 {
 }

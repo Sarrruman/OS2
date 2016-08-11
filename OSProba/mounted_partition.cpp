@@ -6,14 +6,15 @@ MPartition::MPartition(Partition* part, char name) {
 	openedFilesCnt = 0;
 	InitializeCriticalSection(cSection_MP);
 	InitializeConditionVariable(cond_openFiles);
+	part->readCluster(0, (char *) &bitVector);
 }
-inline MPartition::~MPartition()
+MPartition::~MPartition()
 {
 	DeleteCriticalSection(cSection_MP);
 	delete cond_openFiles;
 }
 
-inline void MPartition::waitForOpenedFiles()
+void MPartition::waitForOpenedFiles()
 {
 	EnterCriticalSection(cSection_MP);
 	while (openedFilesCnt != 0) {

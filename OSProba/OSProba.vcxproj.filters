@@ -71,6 +71,9 @@
     <ClCompile Include="partition_table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="path_converter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="part.lib">

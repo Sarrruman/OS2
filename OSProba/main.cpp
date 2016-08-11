@@ -1,10 +1,14 @@
 #include"part.h"
 
+#include "kernelFS.h"
 #include<iostream>
 #include<fstream>
 #include<cstdlib>
 #include<windows.h>
 #include<ctime>
+#include <regex>
+
+bool compare(const Entry&, char*);
 
 #define signal(x) ReleaseSemaphore(x,1,NULL)
 #define wait(x) WaitForSingleObject(x,INFINITE)
@@ -19,8 +23,8 @@ void proba1();
 void proba2();
 void proba3();
 int main() {
-	proba1();
-	
+	proba3();
+
 	system("PAUSE");
 	return 0;
 }
@@ -54,7 +58,20 @@ void proba2() {
 }
 
 void proba3() {
-	char * ptr = "test";
-	cout << ptr[1] << "\n";
-	cout  << "\n" << (typeid(TRUE).name());
+	char* file = new char[11]{ 'X', ':', '\\', 't', 'i', '3', '.', 't', 'x', 'x', '\0' };
+	char* file2 = new char[11]{ 'X', ':', '\\', 't', 'i', '3', '.', 't', 'x', 'x', '\0' };
+
+	char name[8];
+	char ext[3];
+	char part;
+
+	
+	Entry entry = Entry();
+	Entry entry2 = Entry();
+	entry.name[0] = 'a';
+	 
+	entry2 = entry;
+	if (entry.name == entry2.name) cout << "jednaki";
+
+	cout << "\n" << (typeid(TRUE).name());
 }

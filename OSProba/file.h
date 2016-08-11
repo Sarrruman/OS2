@@ -2,6 +2,7 @@
 #include "fs.h"
 
 class KernelFile;
+class KernelFS;
 class File {
 public:
 	~File(); //zatvaranje fajla
