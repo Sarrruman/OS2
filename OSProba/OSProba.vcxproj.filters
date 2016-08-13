@@ -30,9 +30,6 @@
     <ClInclude Include="kernelFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clusters.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="partition_table.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -43,6 +40,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="global_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,7 +71,7 @@
     <ClCompile Include="partition_table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="path_converter.cpp">
+    <ClCompile Include="utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

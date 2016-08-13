@@ -2,6 +2,7 @@
 #include "kernelFile.h"
 
 File::File() {
+	myImpl = nullptr;
 }
 
 File::~File()

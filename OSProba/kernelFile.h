@@ -15,6 +15,7 @@ public:
 	char truncate();
 
 	//pointer to the entry in the global files table
-	GlobalFile* global_file;
+	GlobalFile* global;
 	char mode; // r, w or a
+	BytesCnt position; // points one location after last accessed, 0 if wasn't used
 };

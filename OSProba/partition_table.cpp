@@ -2,7 +2,7 @@
 
 MPartitionTable::MPartitionTable()
 {
-	mutex_MPTable = CreateMutex(NULL, FALSE, NULL);
+	mutex_MPTable = CreateMutex(NULL, FALSE, TEXT("mutex_MPTable"));
 }
 
 MPartitionTable::~MPartitionTable()
@@ -15,7 +15,9 @@ char MPartitionTable::mount(Partition* partition) { // returns 0 if there is no 
 	int free_position = 26;
 	char res;
 	for (int i = 0; i < 26; i++) {
-		if (partitions[i] != nullptr) free_position = i;
+		if (partitions[i] == nullptr) {
+			free_position = i; break;
+		}
 	}
 	if (free_position != 26) {
 		res = 'A' + free_position;
@@ -47,7 +49,7 @@ char MPartitionTable::unmount(char partition)
 	unmounting_or_formating[partition - 'A'] = false;
 
 	//save bit-vector
-	p->partition->writeCluster(0, (char*)&(p->bitVector));
+	p->partition->writeCluster(0, (char*)&(p->bitVector.bitVector));
 	delete p;
 	signal(mutex_MPTable);
 
@@ -70,11 +72,14 @@ char MPartitionTable::format(char partition)
 
 	wait(mutex_MPTable); // format partition
 	unmounting_or_formating[partition - 'A'] = false;
-	p->bitVector = BitVector();
-	p->partition->writeCluster(0, (char*)&(p->bitVector));
+	p->bitVector.bitVector.reset();
+	p->bitVector.bitVector.set(0); // bit-vector space allocation
+	p->bitVector.bitVector.set(1); // allocating index cluster
+	//p->partition->writeCluster(0, (char*)&(p->bitVector.bitVector)); // not needed because bitvector is kept in 
+																	// memory until unmounting
 	//write index
 	ClusterPointer index[INDEX_ENTRIES] = { 0 };
-	p->partition->writeCluster(0, (char*)index);
+	int res = p->partition->writeCluster(1, (char*)index);
 
 	signal(mutex_MPTable);
 

@@ -1,6 +1,6 @@
-
 #include "fs.h"
 #include <string>
+#include "utilities.h"
 
 using namespace std;
 
@@ -35,4 +35,17 @@ bool compare(const Entry& entry, char* fname) {
 
 	if (entry_name == string(fname)) return true;
 	else return false;
+}
+
+ClusterPointer BitVector::findFree() const
+{
+	for (int i = 0; i < sizeOfPartition; i++) {
+		if (bitVector[i] == 0) return i;
+	}
+	return 0; // 0 is reserved for bitvector
+}
+
+BitVector::BitVector(unsigned long size)
+{
+	sizeOfPartition = size;
 }

@@ -152,7 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="clusters.h" />
+    <ClInclude Include="utilities.h" />
     <ClInclude Include="file.h" />
     <ClInclude Include="fs.h" />
     <ClInclude Include="global_file.h" />
@@ -172,7 +172,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mounted_partition.cpp" />
     <ClCompile Include="partition_table.cpp" />
-    <ClCompile Include="path_converter.cpp" />
+    <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="part.lib" />

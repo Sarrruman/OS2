@@ -22,10 +22,12 @@ public:
 								  // vraca 0 u slucaju neuspeha ili 1 u slucaju uspeha
 	char readRootDir(char part, EntryNum n, Directory &d); // result can be 0 because the partition doesn't exist, or is unmounting
 									// or formatting, or there are no entries after the specified entry number in the root directory
+									//prvim argumentom se zadaje particija, drugim redni broj
+									//validnog ulaza od kog se počinje čitanje
 
-	char findFile(char* fname, Entry& entry); // entry will be populated with root entry content if found
-	//prvim argumentom se zadaje particija, drugim redni broj
-	//validnog ulaza od kog se počinje čitanje
+	char findFile(char* fname, Entry& entry, RootEntriesCluster& cluster, ClusterPointer& pointer, int& entryNumber); // entry will be populated with root entry content if found
+																// cluster will contain cluster which contains found entry
+																// pointer would point to the cluster on partition
 	char doesExist(char* fname); //argument je naziv fajla sa
 									   //apsolutnom putanjom
 	File* open(char* fname, char mode);
@@ -37,4 +39,8 @@ public:
 
 	// mounted partitions table
 	MPartitionTable partition_table;
+
+private:
+	void deleteFileContents(MPartition* mPartition, Entry& entry, RootEntriesCluster& cluster, ClusterPointer pointer, int entryNumber);
+	bool createEntryInRoot(const Entry& entry, MPartition* partition); // returns false if there is no free space
 };
